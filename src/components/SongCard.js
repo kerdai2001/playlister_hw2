@@ -78,7 +78,7 @@ export default class SongCard extends React.Component {
                 draggable="true"
             >
                 {num}. <a rel="noreferrer" target="_blank" href={"https://youtube.com/watch?v=" + song.youTubeId}>{song.title} by {song.artist}</a>
-                <input type="button" id={"remove-song-" + num} className="list-card-button" value="✕"/>
+                <input onClick={() => this.props.removeCallback(num - 1)} type="button" id={"remove-song-" + num} className="list-card-button" value="✕"/>
             </div>
         )
     }
