@@ -18,6 +18,7 @@ import PlaylistCards from './components/PlaylistCards.js';
 import SidebarHeading from './components/SidebarHeading.js';
 import SidebarList from './components/SidebarList.js';
 import Statusbar from './components/Statusbar.js';
+import AddSong_Transaction from './transactions/AddSong_Transaction';
 
 class App extends React.Component {
     constructor(props) {
@@ -230,11 +231,40 @@ class App extends React.Component {
         }
         this.setStateWithUpdatedList(list);
     }
+
+    addNewSong = () => {
+        let list = this.state.currentList;
+        let song = {
+            title: "Untitled",
+            artist: "Unknown",
+            youtubeId: "dQw4w9WgXcQ",
+        };
+        list.songs.push(song);
+        this.setStateWithUpdatedList(list);
+    }
+
+    removeNewSong = () => {
+        let list = this.state.currentList;
+        list.songs.pop();
+        this.setStateWithUpdatedList(list);
+    }
+
+
+
+
     // THIS FUNCTION ADDS A MoveSong_Transaction TO THE TRANSACTION STACK
     addMoveSongTransaction = (start, end) => {
         let transaction = new MoveSong_Transaction(this, start, end);
         this.tps.addTransaction(transaction);
     }
+
+    addAddSongTransaction = () => {
+        let transaction = new AddSong_Transaction(this);
+        this.tps.addTransaction(transaction);
+    }
+
+
+
     // THIS FUNCTION BEGINS THE PROCESS OF PERFORMING AN UNDO
     undo = () => {
         if (this.tps.hasTransactionToUndo()) {
@@ -301,6 +331,7 @@ class App extends React.Component {
                     undoCallback={this.undo}
                     redoCallback={this.redo}
                     closeCallback={this.closeCurrentList}
+                    addSongCallback={this.addAddSongTransaction}
                 />
                 <PlaylistCards
                     currentList={this.state.currentList}
