@@ -398,13 +398,30 @@ class App extends React.Component {
         this.closeModal();
     }
 
+    shortcut() {
+        function KeyPress(event, app) {
+            if(event.ctrlKey)
+            {
+                if(event.key === "z") {
+                    app.undo();
+                    app.setStateWithUpdatedList(app.state.currentList);
+                }
+                else if(event.key === 'y') {
+                    app.redo();
+                    app.setStateWithUpdatedList(app.state.currentList);
+                }
+            }
+        }
+
+        document.onkeydown = (e) => KeyPress(e, this);
+    }
 
     render() {
         let canAddSong = this.state.currentList !== null;
         let canUndo = this.tps.hasTransactionToUndo();
         let canRedo = this.tps.hasTransactionToRedo();
         let canClose = this.state.currentList !== null;
-
+        this.shortcut();
         return (
             <div id="root">
                 <Banner />
