@@ -400,7 +400,7 @@ class App extends React.Component {
 
     shortcut() {
         function KeyPress(event, app) {
-            if(event.ctrlKey)
+            if(event.ctrlKey && !app.state.modalOpen)
             {
                 if(event.key === "z") {
                     app.undo();
