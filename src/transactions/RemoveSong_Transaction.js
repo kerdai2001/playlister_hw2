@@ -1,13 +1,11 @@
 import jsTPS_Transaction from "../common/jsTPS.js"
 
 export default class RemoveSong_Transaction extends jsTPS_Transaction {
-    constructor(initApp, index, title, artist, youTubeId) {
+    constructor(initApp, index, song) {
         super();
         this.app = initApp;
         this.index = index;
-        this.title = title;
-        this.artist = artist;
-        this.youTubeId = youTubeId;
+        this.song = song;
     }
 
     doTransaction() {
@@ -15,6 +13,6 @@ export default class RemoveSong_Transaction extends jsTPS_Transaction {
     }
     
     undoTransaction() {
-        this.app.addSong(this.index, this.title, this.artist, this.youTubeId);
+        this.app.addSong(this.index, this.song);
     }
 }

@@ -26,7 +26,7 @@ export default class RemoveSongModal extends Component {
                             <input type="button" 
                                 id="remove-song-confirm-button" 
                                 class="modal-button" 
-                                onClick={() => removeSongCallback(song.title, song.artist, song.youTubeId)}
+                                onClick={() => removeSongCallback(song)}
                                 value='Confirm' />
                             <input type="button" 
                                 id="remove-song-cancel-button" 
