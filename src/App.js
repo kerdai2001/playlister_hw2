@@ -273,9 +273,6 @@ class App extends React.Component {
         this.setStateWithUpdatedList(list);
     }
 
-
-
-
     // THIS FUNCTION ADDS A MoveSong_Transaction TO THE TRANSACTION STACK
     addMoveSongTransaction = (start, end) => {
         let transaction = new MoveSong_Transaction(this, start, end);
