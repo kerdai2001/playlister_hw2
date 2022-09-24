@@ -4,14 +4,7 @@ export default class EditSongModal extends Component {
 
     render() {
         const { song, editSongCallback, hideEditSongModalCallback } = this.props;
-        let title = "";
-        let artist = "";
-        let youTubeId = "";
-        if (song) {
-            title = song.title;
-            artist = song.artist;
-            youTubeId = song.youTubeId;
-        }
+
         return (
             <div 
                 class="modal" 
@@ -24,9 +17,9 @@ export default class EditSongModal extends Component {
                         <div class="modal-center">
                             <div class="modal-center-content">
                                 <b>
-                                <div style={{fontSize:"24pt"}}>Title:<input style={{float: "right", fontSize:"16pt", width: "60%"}} type="text" id="song-title" defaultValue={title}/></div>
-                                <div style={{fontSize:"24pt"}}>Artist:<input style={{float: "right", fontSize:"16pt", width:"60%"}} type="text" id="song-artist" defaultValue={artist}/></div>
-                                <div style={{fontSize:"24pt"}}>You Tube Id:<input style={{float: "right", fontSize:"16pt", width:"60%"}} type="text" id="song-id" defaultValue={youTubeId}/></div>
+                                <div style={{fontSize:"24pt"}}>Title:<input style={{float: "right", fontSize:"16pt", width: "60%"}} type="text" id="song-title" /></div>
+                                <div style={{fontSize:"24pt"}}>Artist:<input style={{float: "right", fontSize:"16pt", width:"60%"}} type="text" id="song-artist" /></div>
+                                <div style={{fontSize:"24pt"}}>You Tube Id:<input style={{float: "right", fontSize:"16pt", width:"60%"}} type="text" id="song-id" /></div>
                                 </b>
                             </div>
                         </div>
@@ -37,7 +30,8 @@ export default class EditSongModal extends Component {
                                 onClick={() => editSongCallback(song, {
                                     title: document.getElementById("song-title").value,
                                     artist: document.getElementById("song-artist").value,
-                                    youTubeId: document.getElementById("song-id").value})}
+                                    youTubeId: document.getElementById("song-id").value
+                                    })}
                                 value='Confirm' />
                             <input type="button" 
                                 id="edit-song-cancel-button" 

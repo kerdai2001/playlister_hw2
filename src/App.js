@@ -391,6 +391,10 @@ class App extends React.Component {
     showEditSongModal() {
         let modal = document.getElementById("edit-song-modal");
         modal.classList.add("is-visible");
+
+        document.getElementById("song-title").value = this.state.currentList.songs[this.state.songIndex].title;
+        document.getElementById("song-artist").value = this.state.currentList.songs[this.state.songIndex].artist;
+        document.getElementById("song-id").value = this.state.currentList.songs[this.state.songIndex].youTubeId;
     }
     hideEditSongModal = () =>  {
         let modal = document.getElementById("edit-song-modal");
@@ -461,12 +465,12 @@ class App extends React.Component {
                     deleteListCallback={this.deleteMarkedList}
                 />
                 <RemoveSongModal
-                    song = {(this.state.currentList != null) ? this.state.currentList.songs[this.state.songIndex] : null}
+                    song = {(this.state.currentList != null) ? this.state.currentList.songs[this.state.songIndex] : {title: "", artist: "", youTubeId: ""}}
                     removeSongCallback={this.addRemoveSongTransaction}
                     hideRemoveSongModalCallback={this.hideRemoveSongModal}
                 />
                 <EditSongModal
-                    song = {(this.state.currentList != null) ? this.state.currentList.songs[this.state.songIndex] : null}
+                    song = {(this.state.currentList != null) ? this.state.currentList.songs[this.state.songIndex] : {title: "", artist: "", youTubeId: ""}}
                     editSongCallback={this.addEditSongTransaction}
                     hideEditSongModalCallback={this.hideEditSongModal}
                 />
