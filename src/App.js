@@ -432,6 +432,7 @@ class App extends React.Component {
                 <SidebarHeading
                     createNewListCallback={this.createNewList}
                     modalOpen={this.state.modalOpen}
+                    playlistOpen={this.state.currentList != null}
                 />
                 <SidebarList
                     currentList={this.state.currentList}

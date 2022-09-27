@@ -2,14 +2,15 @@ import React from "react";
 
 export default class SidebarHeading extends React.Component {
     handleClick = (event) => {
-        const { createNewListCallback} = this.props;
-        createNewListCallback();
+        const { createNewListCallback, playlistOpen} = this.props;
+        
+        if(!playlistOpen) createNewListCallback();
     };
     render() {
-        const { modalOpen} = this.props;
+        const { modalOpen, playlistOpen} = this.props;
         let addPlaylistClass = "toolbar-button";
 
-        if(modalOpen) addPlaylistClass += " playlister-button-disabled";
+        if(modalOpen || playlistOpen) addPlaylistClass += " playlister-button-disabled";
 
         return (
             <div id="sidebar-heading">
