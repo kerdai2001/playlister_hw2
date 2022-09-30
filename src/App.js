@@ -134,11 +134,13 @@ class App extends React.Component {
     deleteMarkedList = () => {
         this.deleteList(this.state.listKeyPairMarkedForDeletion.key);
         this.hideDeleteListModal();
+        this.tps.clearAllTransactions();
     }
     // THIS FUNCTION SPECIFICALLY DELETES THE CURRENT LIST
     deleteCurrentList = () => {
         if (this.state.currentList) {
             this.deleteList(this.state.currentList.key);
+            this.tps.clearAllTransactions();
         }
     }
     renameList = (key, newName) => {
@@ -176,6 +178,7 @@ class App extends React.Component {
     }
     // THIS FUNCTION BEGINS THE PROCESS OF LOADING A LIST FOR EDITING
     loadList = (key) => {
+        this.tps.clearAllTransactions();
         let newCurrentList = this.db.queryGetList(key);
         this.setState(prevState => ({
             listKeyPairMarkedForDeletion : prevState.listKeyPairMarkedForDeletion,
@@ -184,11 +187,12 @@ class App extends React.Component {
         }), () => {
             // AN AFTER EFFECT IS THAT WE NEED TO MAKE SURE
             // THE TRANSACTION STACK IS CLEARED
-            this.tps.clearAllTransactions();
+            
         });
     }
     // THIS FUNCTION BEGINS THE PROCESS OF CLOSING THE CURRENT LIST
     closeCurrentList = () => {
+        this.tps.clearAllTransactions();
         this.setState(prevState => ({
             listKeyPairMarkedForDeletion : prevState.listKeyPairMarkedForDeletion,
             currentList: null,
@@ -196,7 +200,6 @@ class App extends React.Component {
         }), () => {
             // AN AFTER EFFECT IS THAT WE NEED TO MAKE SURE
             // THE TRANSACTION STACK IS CLEARED
-            this.tps.clearAllTransactions();
         });
     }
     setStateWithUpdatedList(list) {

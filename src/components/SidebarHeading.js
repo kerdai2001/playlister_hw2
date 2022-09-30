@@ -10,7 +10,7 @@ export default class SidebarHeading extends React.Component {
         const { modalOpen, playlistOpen} = this.props;
         let addPlaylistClass = "toolbar-button";
 
-        if(modalOpen || playlistOpen) addPlaylistClass += " playlister-button-disabled";
+        //if(modalOpen || playlistOpen) addPlaylistClass += " playlister-button-disabled";
 
         return (
             <div id="sidebar-heading">
@@ -19,6 +19,7 @@ export default class SidebarHeading extends React.Component {
                     id="add-list-button" 
                     className={addPlaylistClass}
                     onClick={this.handleClick}
+                    disabled={modalOpen || playlistOpen}
                     value="+" />
                 Your Playlists
             </div>

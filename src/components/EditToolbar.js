@@ -9,6 +9,7 @@ export default class EditToolbar extends React.Component {
         let redoClass = "toolbar-button";
         let closeClass = "toolbar-button";
         
+        /*
         if(modalOpen)
         {
             addSongClass += " playlister-button-disabled";
@@ -23,6 +24,7 @@ export default class EditToolbar extends React.Component {
             if (!canRedo) redoClass += " playlister-button-disabled";
             if (!canClose) closeClass += " playlister-button-disabled";
         }
+        */
 
         return (
             <div id="edit-toolbar">
@@ -31,20 +33,23 @@ export default class EditToolbar extends React.Component {
                 id='add-song-button' 
                 value="+" 
                 className={addSongClass}
+                disabled={modalOpen || !canAddSong}
                 onClick={addSongCallback}
             />
             <input 
                 type="button" 
                 id='undo-button' 
                 value="⟲" 
-                className={undoClass} 
+                className={undoClass}
+                disabled={modalOpen || !canUndo}
                 onClick={undoCallback}
             />
             <input 
                 type="button" 
                 id='redo-button' 
                 value="⟳" 
-                className={redoClass} 
+                className={redoClass}
+                disabled={modalOpen || !canRedo}
                 onClick={redoCallback}
             />
             <input 
@@ -52,6 +57,7 @@ export default class EditToolbar extends React.Component {
                 id='close-button' 
                 value="&#x2715;" 
                 className={closeClass} 
+                disabled={modalOpen || !canClose}
                 onClick={closeCallback}
             />
         </div>
